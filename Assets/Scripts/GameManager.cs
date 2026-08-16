@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public GameObject startText;
     public GameObject gameOverText;
     public TextMeshProUGUI scoreText;
+    public AudioClip pointSound;
 
+    private AudioSource audioSource;
     private bool gameStarted = false;
     private bool gameOver = false;
     private int score = 0;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         startText.SetActive(true);
         gameOverText.SetActive(false);
+        scoreText.gameObject.SetActive(false);   // ← add this
     }
 
     void Update()
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             gameStarted = true;
             startText.SetActive(false);
+            scoreText.gameObject.SetActive(true);   // ← add this
             Time.timeScale = 1f;
         }
         else if (gameOver && Input.GetMouseButtonDown(0))
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         score++;
+        audioSource.PlayOneShot(pointSound);
         scoreText.text = score.ToString();
     }
 
