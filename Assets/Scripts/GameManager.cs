@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     private bool gameStarted = false;
     private bool gameOver = false;
     private int score = 0;
-    private int highScore = 0;
+    private static int highScore = 0;
+    private static bool hasPlayedBefore = false;
 
     void Awake()
     {
@@ -30,9 +31,8 @@ public class GameManager : MonoBehaviour
         gameOverText.SetActive(false);
         scoreText.gameObject.SetActive(false);
 
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
         highScoreText.text = "Best: " + highScore;
-        highScoreText.gameObject.SetActive(false);   // ← add this
+        highScoreText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -62,20 +62,14 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
 
-        // was there already a record from a previous game?
-        bool hadRecord = PlayerPrefs.HasKey("HighScore");
-
-        // save the record (always ensures the key exists after game #1)
         if (score > highScore)
         {
             highScore = score;
         }
-        PlayerPrefs.SetInt("HighScore", highScore);
-        PlayerPrefs.Save();
 
-        // show Best only if a record existed BEFORE this game
         highScoreText.text = "Best: " + highScore;
-        highScoreText.gameObject.SetActive(hadRecord);
+        highScoreText.gameObject.SetActive(hasPlayedBefore);
+        hasPlayedBefore = true;
 
         gameOverText.SetActive(true);
         Time.timeScale = 0f;
