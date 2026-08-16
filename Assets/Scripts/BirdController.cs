@@ -30,6 +30,8 @@ public class BirdController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.name == "Ceiling") return;   // ceiling blocks, doesn't kill
+
         if (!isDead)
         {
             isDead = true;
