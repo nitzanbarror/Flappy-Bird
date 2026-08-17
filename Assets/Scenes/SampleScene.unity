@@ -1565,7 +1565,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.8
 --- !u!50 &1585217063
 Rigidbody2D:
   serializedVersion: 5
@@ -1575,7 +1575,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585217061}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -1679,7 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc02e653177fab4ca5810d9099918ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BirdController
-  flapForce: 5
+  flapForce: 4
   flapSound: {fileID: 8300000, guid: 4a88ecd5b3453134da14fd6091cc5456, type: 3}
   hitSound: {fileID: 8300000, guid: 1a385583a11a2934c949e86c669b0d13, type: 3}
 --- !u!82 &1585217067
